@@ -1,0 +1,52 @@
+<!--
+ * @Author: yangdongxu
+ * @Date: 2024-06-06 15:58:05
+ * @LastEditors: yangdongxu
+ * @LastEditTime: 2024-06-06 16:30:32
+ * @FilePath: \vue3-projectd:\find_work_2024_year_first\react18-app-demo\public\redux.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://lib.baomitu.com/redux-search/2.5.0/redux-search.min.js"></script> -->
+    <!-- <script  src="https://lib.baomitu.com/redux-search/2.5.0/redux-search.js"></script> -->
+</head>
+
+<body>
+    <button>+</button>
+    <span id="numid"></span>
+    <button>-</button>
+</body>
+
+</html>
+<script type="module">
+    import * as Redux from 'https://unpkg.com/redux@latest/dist/redux.browser.mjs'
+    const dom = document.getElementById('numid')
+    const buttonArr = document.getElementsByTagName('button');
+  console.log(' ', buttonArr)
+    function reducer(state = {
+        count: 0
+    }, action) {
+        action.type == 'ADD'&&state.count ++;
+        action.type == 'DEC' && state.count-- 
+        return state;
+    }
+    const store = Redux.createStore(reducer);
+    dom.innerHTML = store.getState().count;
+    buttonArr[0].addEventListener('click', () => {
+        console.log(' 1', store.getState())
+        store.dispatch({ type: 'ADD' })
+    })
+    buttonArr[1].addEventListener('click', () => {
+        console.log('2 ', store.getState())
+        store.dispatch({ type: 'DEC' })
+    })
+    store.subscribe(() => {
+        console.log(' ', store.getState())
+        dom.innerHTML = store.getState().count
+    })
+</script>
