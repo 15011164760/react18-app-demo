@@ -2,7 +2,7 @@
  * @Author: yangdongxu
  * @Date: 2024-06-04 16:39:04
  * @LastEditors: guoshouying
- * @LastEditTime: 2025-11-08 12:44:01
+ * @LastEditTime: 2025-11-08 13:19:46
  * @FilePath: \find_work_2024_year_first\react18-app-demo\src\App.js
  */
 
@@ -110,8 +110,8 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <RouterProvider router={router}></RouterProvider>
+        <Example />
       </Provider>
-      {/* <Example /> */}
       <A getADataFn={getADataFn} />
       <B msgA={msgA} />
       <input type="text" ref={inputRef} />
