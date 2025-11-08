@@ -110,14 +110,14 @@ const tabList = [
 ];
 function UseGetListDataFn(){
   const [itemList, setItemList] = useState([]);
-   // 获取评论数据
-   async function getCommentData() {
-    const res = await axios.get("http://localhost:3001/data");
-    console.log(' ', res.data)
-    setItemList(_.orderBy(res.data, ["ctime"], ["desc"]));
-  }
+  //  // 获取评论数据
+  //  async function getCommentData() {
+  //   const res = await axios.get("http://localhost:3001/data");
+  //   console.log(' ', res.data)
+  //   setItemList(_.orderBy(res.data, ["ctime"], ["desc"]));
+  // }
   useEffect(() => {
-    getCommentData();
+    // getCommentData();
   },[]);
   return {
     itemList,
