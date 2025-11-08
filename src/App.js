@@ -2,9 +2,10 @@
  * @Author: yangdongxu
  * @Date: 2024-06-04 16:39:04
  * @LastEditors: yangdongxu
- * @LastEditTime: 2024-06-06 09:39:13
- * @FilePath: \vue3-projectd:\find_work_2024_year_first\react18-app-demo\src\App.js
+ * @LastEditTime: 2025-02-12 09:50:03
+ * @FilePath: \react18-app-demo\src\App.js
  */
+
 import { useState, useRef } from "react";
 import CommentApp from "./components/comment";
 import Example from "./components/Example";
@@ -110,7 +111,7 @@ function App() {
       />
       <CommentApp
         name="yang"
-        isBool={false}
+        isBool={true}
         isnumber={12}
         arr={[1, 2, 3]}
         obj={{ name: "yang", age: 12 }}

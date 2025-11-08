@@ -2,3 +2,8 @@
     color:blue;
     font-size: 20px;
 }
+.about{
+    h1{
+        color:pink !important;
+    }
+}

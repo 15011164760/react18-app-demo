@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>上传word文件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+ 
+        .container {
+            padding: 0 50px;
+        }
+ 
+        .operation {
+            padding: 20px;
+        }
+ 
+        .btn {
+            min-width: 50px;
+            font-size: 20px;
+            color: #fff;
+            background: #118ee9;
+            margin: 0 20px 0 0;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+ 
+        .item {
+            width: 350px;
+            box-sizing: border-box;
+            padding: 4px 14px 4px 14px;
+            color: #000;
+            font-size: 12px;
+            background: #fff;
+        }
+ 
+    </style>
+ 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx-preview@0.1.15/dist/docx-preview.js"></script>
+ 
+</head>
+ 
+<body>
+    <div class="container" id="app">
+        <div class="operation">
+            <!-- <button class="btn" @click="aaa">上传word文件</button> -->
+            <button class="btn"  onclick="aaa()">上传word文件</button>
+        </div>
+        <br>
+        <div v-if="wordData">{{wordData}}</div>
+        <br>
+        <div id="preview"></div>
+    </div>
+    <script>
+      function aaa(){
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            alert("经度：" + longitude);
+            alert("纬度：" + latitude);
+        });
+        } else {
+        console.log("浏览器不支持Geolocation API");
+        }
+      }
+
+        // const { createApp, ref, onMounted } = Vue
+        // createApp({
+        //     setup() {
+        //         let wordData = ref('')
+        //         const uploadFile = (mark) => {
+        //             let inputEle = document.createElement('input')
+        //             inputEle.type = 'file'
+        //             inputEle.accept = '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        //             inputEle.click()
+        //             inputEle.addEventListener('input', (event) => {
+        //                 onWord(event)
+        //             })
+        //         };
+        //         const onWord = (event) => {
+        //             let reader = new FileReader();
+        //             let file = event.target.files[0];
+        //             let options = { inWrapper: false, ignoreWidth: true, ignoreHeight: true }
+        //             docx.renderAsync(file, document.getElementById("preview"),null, options)
+        //             let fileName = file.name
+        //             if (file) {
+        //                 reader.onload = function (e) {
+        //                     const data = e.target.result;
+        //                     // 转文字
+        //                     mammoth.extractRawText({ arrayBuffer: data }).then(function (displayResult) {
+        //                         wordData.value = displayResult.value
+        //                     }).done();
+        //                     // 转HTML
+        //                     mammoth.convertToHtml({ arrayBuffer: data }).then(function (displayResult) {
+        //                         console.log(displayResult);
+        //                     }).done();
+        //                     // 转Markdown 文档。
+        //                     mammoth.convertToMarkdown({ arrayBuffer: data }).then(function (displayResult) {
+        //                         console.log(displayResult);
+        //                     }).done();
+        //                 };
+        //                 reader.readAsArrayBuffer(file);
+        //             }
+        //         }
+ 
+        //         return {
+        //             wordData,
+        //             uploadFile,
+        //             onWord,
+        //         }
+        //     }
+        // }).mount('#app')
+    </script>
+</body>
+ 
+</html>

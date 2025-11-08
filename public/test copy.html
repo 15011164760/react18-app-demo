@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自适应布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            /* 禁止滚动条 */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        .main-area {
+            display: flex;
+            flex: 1;
+        }
+
+        .left-sidebar {
+            background-color: #f4f4f4;
+            width: 200px;
+            /* 侧边栏宽度 */
+            flex-shrink: 0;
+            /* 防止侧边栏缩小 */
+            padding: 1em;
+            border:1px solid #000;
+        }
+
+        .center-right-area {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            /* 为了垂直排列中间和右侧内容（这里其实不需要，因为已经是flex的默认方向，但为了清晰） */
+            position: relative;
+            /* 为了定位右侧内容（如果需要的话） */
+        }
+
+        .center-content {
+            display: flex;
+            flex: 1;
+            /* 中间内容占据剩余空间的较大部分（这里设为1表示与右侧内容平分，但可以通过权重调整） */
+            padding: 1em;
+        }
+
+        .center-item {
+            flex: 1;
+            /* 平分父容器的宽度 */
+            background-color: #e0e0e0;
+            margin: 0 0.5em;
+            /* 子元素之间的间距 */
+            padding: 1em;
+            text-align: center;
+            border:1px solid #000;
+        }
+
+        .center-item:first-child {
+            margin-left: 0;
+            /* 移除第一个元素的左边距 */
+        }
+
+        .center-item:last-child {
+            margin-right: 0;
+            /* 移除最后一个元素的右边距 */
+        }
+
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            /* 垂直排列右侧内容的子元素 */
+            flex: none;
+            /* 右侧内容占据固定空间（这里设为none表示不自动扩展，但可以通过设置具体高度或权重调整） */
+            width: 300px;
+            /* 右侧内容宽度，可以根据需要调整 */
+            background-color: #d0d0d0;
+            padding: 1em;
+            box-sizing: border-box;
+            /* 确保内边距不会增加容器宽度 */
+        }
+
+        .right-top,
+        .right-bottom {
+            flex: 1;
+            /* 上下平分容器高度 */
+            text-align: center;
+            padding: 0.5em 0;
+            border:1px solid #000;
+            /* 上下内边距 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>头部</header>
+        <div class="main-area">
+            <aside class="left-sidebar">左侧侧边栏</aside>
+            <div class="center-right-area">
+                <div class="center-content">
+                    <div class="center-item">中间内容 1</div>
+                    <div class="center-item">中间内容 2</div>
+                    <div class="center-item">中间内容 3</div>
+                    <div class="center-item">中间内容 4</div>
+                </div>
+                <div class="right-content">
+                    <div class="right-top">右侧上部内容</div>
+                    <div class="right-bottom">右侧下部内容</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

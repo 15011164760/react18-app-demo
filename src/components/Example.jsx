@@ -1,3 +1,10 @@
+/*
+ * @Author: yangdongxu
+ * @Date: 2024-06-06 09:35:22
+ * @LastEditors: yangdongxu
+ * @LastEditTime: 2025-02-13 16:11:48
+ * @FilePath: \react18-app-demo\src\components\Example.jsx
+ */
 import "./Example.css";
 import crx from "./crx";
 import Demo from "./Demo";
