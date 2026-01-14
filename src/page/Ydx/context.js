@@ -1,60 +1,83 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-
+/*
+ * @Author: yangdongxu
+ * @Date: 2026-01-08 16:18:44
+ * @LastEditors: yangdongxu
+ * @LastEditTime: 2026-01-14 14:03:51
+ * @FilePath: \trust-data-space-webd:\react18-app-demo\src\page\Ydx\context.js
+ */
+import { createContext, useContext, useEffect, useRef, useState, forwardRef } from "react";
+import RecipeList from "./RecipeList";
 const ThemeContext = createContext(null);
-
 export default function MyApp() {
+	const { aaa } = PeopleList;
 	return (
 		<ThemeContext.Provider value="dark">
 			<>
 				<Form />
 				<Input></Input>
+				<PeopleList />
+				<RecipeList />
 			</>
 		</ThemeContext.Provider>
 	);
 }
+function PeopleList() {
+	let obj = {
+		name: "张三",
+		age: 18,
+		demo: {
+			a: 1,
+		},
+	};
+
+	return (
+		<>
+			<div className="intro">
+				<h1>欢迎来到我的站点！{JSON.stringify(obj)}</h1>
+			</div>
+			<p className="summary">
+				你可以在这里了解我的想法。
+				<br />
+				<br />
+				<b>
+					还有科学家们的<i>照片</i>
+				</b>
+				！
+			</p>
+		</>
+	);
+}
+PeopleList.aaaa = function () {
+	console.log("我是PeopleList的静态方法");
+};
 function Input() {
 	const inputRef = useRef(); // const inputRef=useRef(null);
 	const [count, setCount] = useState(0);
-	let ref = useRef(0);
-	/* 
-    场景 3：优化引用类型（避免重复创建对象/数组）
-    避免每次渲染都创建新的对象（{}），减少子组件不必要的渲染。
-    import { useMemo } from 'react';
-
-        function MyComponent({ style }) {
-        const defaultStyle = useMemo(() => ({ color: 'red', fontSize: 16 }), []);
-        
-        const mergedStyle = useMemo(() => ({
-            ...defaultStyle,
-            ...style,
-        }), [style, defaultStyle]);
-
-        return <div style={mergedStyle}>Hello</div>;
-        }
-    */
 	useEffect(() => {
-		// console.log(ref.current, inputRef, "==ref.current");
-		ref.current = count;
-		// ref.current++;
-		// inputRef.current.focus();
-	});
+		console.log(count, inputRef.current.innerHTML, "==ref.current");
+	}, [count]);
 	function handleClick() {
 		setCount(count + 1);
-		// ref.current = ref.current + 1;
 	}
 	return (
 		<>
-			<input type="text" ref={inputRef}></input>
-			<div>{ref.current}</div>
+			<input type="text"></input>
+			<div ref={inputRef}>{count}</div>
 			<button onClick={handleClick}>{count}</button>
 		</>
 	);
 }
 function Form() {
+	const chlidRef = useRef(null);
+	const chlidRef1 = useRef(null);
+	useEffect(() => {
+		console.log(chlidRef, chlidRef1, "==refPanel.current");
+	});
 	return (
 		<Panel title="Welcome">
-			<Button>Sign up</Button>
-			<Button>Log in</Button>
+			<Button ref={chlidRef}>Sign up</Button>
+			<Button ref={chlidRef1}>Log in</Button>
+			{/* <div>{refPanel.current}</div> */}
 		</Panel>
 	);
 }
@@ -69,9 +92,17 @@ function Panel({ title, children }) {
 		</section>
 	);
 }
-
-function Button({ children }) {
+const Button = forwardRef((props, chlidRef) => {
+	const theme = useContext(ThemeContext);
+	const className = "button-" + theme + " aaaa";
+	return (
+		<button className={className} ref={chlidRef}>
+			{props.children}
+		</button>
+	);
+});
+/* function Button({ children }) {
 	const theme = useContext(ThemeContext);
 	const className = "button-" + theme + " aaaa";
 	return <button className={className}>{children}</button>;
-}
+} */
